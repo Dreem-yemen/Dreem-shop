@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تفاصيل المنتج</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: #fff;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .product-detail {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .main-image {
+      flex: 1;
+      max-width: 500px;
+      text-align: center;
+      position: relative;
+    }
+
+    .main-image img {
+      width: 100%;
+      max-height: 600px;
+      object-fit: contain;
+      border: 1px solid #ddd;
+    }
+
+    .thumbnails {
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      overflow-x: auto;
+      margin-top: 10px;
+      padding-bottom: 20px;
+    }
+
+    .thumbnails img {
+      width: 120px;
+      height: 150px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border 0.2s;
+    }
+
+    .thumbnails img:hover,
+    .thumbnails img.active {
+      border: 2px solid #e44d26;
+    }
+
+    .info {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #e44d26;
+      font-size: 1.5em;
+      margin: 10px 0;
+    }
+
+    .details {
+      font-size: 1em;
+      margin: 10px 0;
+      color: #555;
+    }
+
+    .contact-btn {
+      background-color: #25D366;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .slide-buttons {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .prev, .next {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>تفاصيل المنتج</h1>
+  </header>
+
+  <div class="product-detail">
+    <div class="main-image">
+      <img id="mainProductImage" src="http://localhost:4000/Camera/IMG_20250513_114502.jpg" alt="صورة المنتج">
+      <div class="slide-buttons">
+        <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+        <button class="next" onclick="changeImage(1)">&#10095;</button>
+      </div>
+    </div>
+
+    <div class="thumbnails">
+      <img src="http://localhost:4000/Camera/IMG_20250513_114442.jpg" onclick="changeMainImage(this)" class="active">
+      <img src="http://localhost:4000/Camera/IMG_20250513_114502.jpg" onclick="changeMainImage(this)">
+      <img src="http://localhost:4000/Camera/IMG_20250513_114502.jpg" onclick="changeMainImage(this)">
+      <img src="http://localhost:4000/Camera/IMG_20250513_114502.jpg" onclick="changeMainImage(this)">
+    </div>
+
+    <div class="info">
+      <h2 id="productName">تيشرت رجالي قطني</h2>
+      <div class="price" id="productPrice">75 ر.س</div>
+      <div class="details">
+        <p>العمر: 22 سنة</p>
+        <p>اللون: أسود</p>
+        <p>الشكل: قصير</p>
+        <p>النمط: صيفي</p>
+      </div>
+      <p>تيشرت صيفي مصنوع من القطن بنسبة 100%، مثالي للارتداء اليومي.</p>
+      <button class="contact-btn" onclick="contactAboutProduct('تيشرت رجالي قطني', window.location.href)">طلب المنتج</button>
+    </div>
+  </div>
+
+  <footer>
+  </footer>
+
+  <script>
+    const images = [
+      "http://localhost:4000/Camera/IMG_20250513_114442.jpg",
+      "http://localhost:4000/Camera/IMG_20250513_114502.jpg",
+      "http://localhost:4000/Camera/IMG_20250513_114502.jpg",
+      "http://localhost:4000/Camera/IMG_20250513_114502.jpg"
+    ];
+    let currentImageIndex = 0;
+
+    function changeMainImage(thumbnail) {
+      const src = thumbnail.src;
+      document.getElementById("mainProductImage").src = src;
+
+      document.querySelectorAll(".thumbnails img").forEach(img => img.classList.remove("active"));
+      thumbnail.classList.add("active");
+    }
+
+    function changeImage(direction) {
+      currentImageIndex += direction;
+      if (currentImageIndex < 0) currentImageIndex = images.length - 1;
+      if (currentImageIndex >= images.length) currentImageIndex = 0;
+      document.getElementById("mainProductImage").src = images[currentImageIndex];
+    }
+
+    function contactAboutProduct(productName, productLink) {
+  if (productLink && (productLink.startsWith("http://") || productLink.startsWith("https://"))) {
+    const message = `مرحباً، أنا مهتم بالمنتج: ${productName}\n\nرابط المنتج:\n${productLink}`;
+    const whatsappUrl = `https://wa.me/967771075146?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  } else {
+    alert("الرابط غير صالح.");
+  }
+}
+  </script>
+</body>
+</html>
