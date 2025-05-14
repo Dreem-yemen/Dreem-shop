@@ -1,112 +1,159 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اتصل بنا - متجر الأزياء الحديثة</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        header {
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        nav {
-  display: flex;
-  justify-content: center;
-  background-color: #333;
-  padding: 10px;
-  flex-wrap: wrap; /* لضمان التناسق على الشاشات الصغيرة */
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;           /* تقليل المسافة الجانبية */
-  padding: 4px 8px;         /* تقليل الحشوة */
-  font-size: 14px;          /* تصغير حجم الخط */
-  transition: background 0.3s;
-  white-space: nowrap;      /* منع انقسام الكلمات */
-}
-        .contact-form {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            max-width: 600px;
-            margin: 50px auto;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-        .contact-form button {
-            background-color: #25D366;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 20px;
-        }
-        footer a {
-            color: white;
-            font-size: 24px;
-            margin: 0 15px;
-            text-decoration: none;
-        }
-        footer a:hover {
-            color: #25D366;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>اتصل بنا - متجر الأزياء الحديثة</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <style>
+    body { font-family: Arial; background: #f5f5f5; padding: 0; margin: 0; }
+    header {
+      background-color: #fff;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #333;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      padding: 6px 12px;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background-color: #25D366;
+      border-radius: 5px;
+    }
+    .contact-form {
+      background: white;
+      margin: 50px auto;
+      padding: 20px;
+      max-width: 500px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #25D366;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .success-message, .error-message, .loading {
+      display: none;
+      text-align: center;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    .success-message { background: #d4edda; color: #155724; }
+    .error-message { background: #f8d7da; color: #721c24; }
+    .loading { color: #25D366; }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    footer a {
+      margin: 0 10px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    footer img {
+      width: 35px;
+      height: 35px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>اتصل بنا</h1>
-        <p>نحن هنا للمساعدة. أرسل لنا استفسارك وسنرد عليك بأسرع وقت!</p>
-    </header>
-    
-    <nav>
-        <a href="index.html">الرئيسية</a>
-        <a href="men.html">رجالي</a>
-        <a href="women.html">نسائي</a>
-        <a href="kids.html">أطفال</a>
-        <a href="contact.html">اتصل بنا</a>
-    </nav>
-    
-    <div class="contact-form">
-        <h2>نموذج التواصل</h2>
-        <form action="https://formsubmit.co/fc1e4629ea1171d5f9a5d0867396fa35" method="POST">
-            <input type="text" name="name" placeholder="اكتب اسمك الكامل" required><br>
-            <input type="email" name="email" placeholder="بريدك الإلكتروني" required><br>
-            <textarea name="message" placeholder="اكتب رسالتك هنا" required></textarea><br>
-            <button type="submit">إرسال</button>
-        </form>
-    </div>
 
-    <footer>
-        <p>تابعنا على:</p>
-        <a href="https://wa.me/967771075146" title="واتساب"><img src="http://localhost:4000/Eraser/1747175200574.png" alt="واتساب" style="width: 40px; height: 40px;"></a>
-        <a href="https://www.facebook.com/profile.php?id=100039569267376" title="فيسبوك"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="فيسبوك" style="width: 35px; height: 35px;"></a>
-        <a href="https://t.me/+967771075146" title="تلجرام"><img src="http://localhost:4000/Eraser/IMG_20250514_012713.png" alt="تلجرام" style="width: 45px; height: 45px;"></a>
-        
-    </footer>
+  <header>
+    <h1>اتصل بنا</h1>
+    <p>نحن هنا لخدمتك. لا تتردد في إرسال أي استفسار!</p>
+  </header>
+
+  <nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="men.html">رجالي</a>
+    <a href="women.html">نسائي</a>
+    <a href="kids.html">أطفال</a>
+    <a href="contact.html">اتصل بنا</a>
+  </nav>
+
+  <div class="contact-form">
+    <h2>نموذج التواصل</h2>
+    
+    <div class="success-message" id="success-message">تم إرسال رسالتك بنجاح!</div>
+    <div class="error-message" id="error-message">فشل في إرسال الرسالة. حاول لاحقاً.</div>
+    <div class="loading" id="loading">جاري الإرسال...</div>
+
+    <form id="contact-form">
+      <input type="text" name="from_name" placeholder="الاسم الكامل" required>
+      <input type="email" name="from_email" placeholder="البريد الإلكتروني" required>
+      <input type="text" name="subject" placeholder="عنوان الرسالة" required>
+      <textarea name="message" placeholder="اكتب رسالتك هنا..." rows="5" required></textarea>
+      <button type="submit" id="submit-btn">إرسال</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>تابعنا على:</p>
+    <a href="https://wa.me/967771075146" title="واتساب">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="واتساب">
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=100039569267376" title="فيسبوك">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="فيسبوك">
+    </a>
+    <a href="https://t.me/+967771075146" title="تلجرام">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="تلجرام">
+    </a>
+  </footer>
+
+  <script>
+    emailjs.init("pZrvUZJEgMslB9UV_"); // مفتاحك العام
+
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      document.getElementById("loading").style.display = "block";
+      document.getElementById("submit-btn").disabled = true;
+      document.getElementById("success-message").style.display = "none";
+      document.getElementById("error-message").style.display = "none";
+
+      emailjs.sendForm("service_ddxezet", "template_ieegcvs", this)
+        .then(function(response) {
+          document.getElementById("loading").style.display = "none";
+          document.getElementById("success-message").style.display = "block";
+          document.getElementById("contact-form").reset();
+          document.getElementById("submit-btn").disabled = false;
+        }, function(error) {
+          document.getElementById("loading").style.display = "none";
+          document.getElementById("error-message").style.display = "block";
+          document.getElementById("submit-btn").disabled = false;
+          console.error("EmailJS Error:", error);
+        });
+    });
+  </script>
+
 </body>
 </html>
