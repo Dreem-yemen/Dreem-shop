@@ -1,1 +1,3 @@
+User-agent: *
+Allow: /
 Sitemap: https://dreem-yemen.github.io/Dreem-shop/sitemap.xml
